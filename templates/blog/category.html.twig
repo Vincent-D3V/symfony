@@ -1,13 +1,15 @@
-{% extends "base.html.twig" %}
-{% block body %}
-{% for article in article %}
-<ul>
-   <li>
-       {{ article.id }}
-       {{ article.title }}
-       {{ article.category.name }}
-   </li>
-</ul>
+{% extends 'base.html.twig' %}
 
-{% endfor %}
+{% block title %}All articles{% endblock %}
+
+{% block body %}
+    <h1>All articles from {{ category.name }} : </h1>
+    {% for article in articles %}
+        <div>
+            <h2>{{ article.id }} / {{ article.title }} - Category : {{ article.category.name }}</h2>
+            <p>{{ article.content }}</p>
+        </div>
+    {% else %}
+        Aucun article trouvé.
+    {% endfor %}
 {% endblock %}
