@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tags;
 use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -72,6 +73,17 @@ class BlogController extends AbstractController
             [
                 'articles' => $category->getArticles(),
                 'category' => $category,
+            ]);
+    }
+    /**
+     * @Route("/tag/{name}", name="show_tag").
+     */
+    public function showByTags(Tags $tags): Response
+    {
+        return $this->render('blog/tags.html.twig',
+            [
+                'articles' => $tags->getArticle(),
+                'tags' => $tags,
             ]);
     }
 }
