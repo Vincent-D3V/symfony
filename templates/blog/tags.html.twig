@@ -3,5 +3,5 @@ Tags: {{ tags.name }}
 Article associated:
 </br>
 {% for article in articles %}
-{{ article.title }}
+<a href="/article/{{ article.id }}" >{{ article.title }}</a>
 {% endfor %}
