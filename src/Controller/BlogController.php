@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Controller;
+
 use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 class BlogController extends AbstractController
 {
     /**
