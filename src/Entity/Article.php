@@ -33,6 +33,12 @@ class Article
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="articleTags", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="tags_article")
+     */
+    private $tagArticles;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
