@@ -1,9 +1,18 @@
-
 {% extends 'base.html.twig' %}
 
+{% block title %}All articles{% endblock %}
+
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    <button type="submit" name="addCat">Ajoutez</button>
-    {{ form_end(form) }}
+    <button class="btn btn-secondary mt-2 mb-2"><a href="{{ path('add_category') }}">Create a category</a></button>
+    <h1>All articles from article table : </h1>
+    {% for article in articles %}
+        <div class="card border-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-body text-secondary">
+                <h2 class="card-title"><small>({{ loop.index }})</small> [id: {{ article.id }}] / {{ article.title }} - Category : {{ article.category.name }}</h2>
+                <p class="card-text">{{ article.content }}</p>
+            </div>
+        </div>
+    {% else %}
+        Aucun article trouvé.
+    {% endfor %}
 {% endblock %}

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/index", name="blog_index")
+     * @Route("/", name="blog_index")
      */
     public function index()
     {

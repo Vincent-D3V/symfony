@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
         }
-        return $this->render('blog/index.html.twig', [
+        return $this->render('blog/create.html.twig', [
             'form' => $form->createView()
         ]);
 
