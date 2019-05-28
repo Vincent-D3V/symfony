@@ -30,7 +30,7 @@ class Tags
 
     /**
      * @ORM\ManyToMany(targetEntity="Article", inversedBy="tagArticles", fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="article_Tags")
+     * @ORM\JoinTable(name="tags_article")
      */
     private $articleTags;
 

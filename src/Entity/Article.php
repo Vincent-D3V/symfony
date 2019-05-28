@@ -29,7 +29,7 @@ class Article
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tags", mappedBy="article")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tags", mappedBy="articles")
      */
     private $tags;
 
