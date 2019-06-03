@@ -29,15 +29,14 @@ class Article
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tags", mappedBy="articles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tags", mappedBy="article")
      */
     private $tags;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="articleTags", fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="tags_article")
+     * @ORM\Column(type="string", length=255)
      */
-    private $tagArticles;
+    private $slug;
 
     public function __construct()
     {
@@ -100,6 +99,18 @@ class Article
             $this->tags->removeElement($tag);
             $tag->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

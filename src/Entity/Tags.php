@@ -28,11 +28,6 @@ class Tags
      */
     private $article;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tagArticles", fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="tags_article")
-     */
-    private $articleTags;
 
     public function __construct()
     {
