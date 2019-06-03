@@ -30,7 +30,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             $article->setTitle($faker->name);
             $article->setContent($faker->sentence(10));
             $manager->persist($article);
-            $article->setCategory($this->getReference('php'));
+            $article->setCategory($this->getReference('categorie_'.$faker->numberBetween(0,3)));
             $manager->flush();
         }
     }
