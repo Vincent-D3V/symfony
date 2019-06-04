@@ -13,6 +13,12 @@
         </nav>
     </header>
     <body>
+    {% if app.user %}
+        Bonjour {{ app.user.email }} !
+        <a href="{{ path('app_logout') }}" style="background-color: beige"> Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" style="background-color: beige"> Se connecter</a>
+    {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
