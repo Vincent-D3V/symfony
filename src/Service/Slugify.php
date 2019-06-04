@@ -15,24 +15,6 @@ class Slugify
      // replace non letter or digits by -
      $input = str_replace("'","",$input);
      $input = preg_replace('~[^\\pL\d.]+~u', '-', $input);
-     // trim
-     $input = trim($input, '-');
-     // setlocale(LC_CTYPE, 'en_GB.utf8');
-     setlocale(LC_CTYPE, 'fr_FR.utf8');
-     // transliterate
-     if (function_exists('iconv')) {
-         $input = iconv('utf-8', 'us-ascii//TRANSLIT', $input);
-     }
-     // lowercase
-     $input = strtolower($input);
-     // remove unwanted characters
-     $input = preg_replace('~[^-\w.]+~', '', $input);
-     if (empty($input)) {
-         return 'empty_$';
-     }
-     // if ($strict) {
-     //     $input = str_replace(".", "_", $input);
-     // }
      return $input;
  }
 }
