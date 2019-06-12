@@ -12,6 +12,9 @@
                 <p class="card-text">{{ article.content }}</p>
             </div>
         </div>
+        {% if is_granted('ROLE_AUTHOR') %}
+            <a href="{{ path('article_edit', { 'id': article.id} ) }}">Éditer</a>
+        {%endif%}
     {% else %}
         Aucun article trouvé.
     {% endfor %}

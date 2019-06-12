@@ -14,6 +14,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
+use App\Entity\Tags;
 
 class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -24,14 +25,24 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        for($i=0;$i<50;$i++) {
+        for ($i = 1; $i <= 100; $i++) {
+            $category = new Category();
+            $category->setName("category " . $i);
+            $manager->persist($category);
+
+            $tag = new Tags();
+            $tag->setName("tag " . $i);
+            $manager->persist($tag);
+
             $article = new Article();
-            $faker = Faker\Factory::create('dz_DZ');
-            $article->setTitle($faker->name);
-            $article->setContent($faker->sentence(10));
+            $article->setTitle("article " . $i);
+            $article->setSlug('slug'. $i);
+            $article->setContent("article " . $i . " content");
+            $article->setCategory($category);
+            $article->addTag($tag);
             $manager->persist($article);
-            $article->setCategory($this->getReference('categorie_'.$faker->numberBetween(0,3)));
-            $manager->flush();
         }
+
+        $manager->flush();
     }
 }
