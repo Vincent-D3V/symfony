@@ -9,17 +9,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BlogController extends AbstractController
 {
     /**
      * @Route("/", name="blog_index")
      */
-    public function index()
+    public function index(SessionInterface $session) : Response
     {
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll();
+        if (!$session->has('total')) {
+            $session->set('total', 0); // if total doesn’t exist in session, it is initialized.
+        }
+        else {
+            $total = $session->get('total');
+            }
         if (!$articles){
             throw $this->createNotFoundException(
                 "No articles found in article's table."

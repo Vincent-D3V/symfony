@@ -33,6 +33,8 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
+            $this->addFlash('success', 'The new category has been created');
+            return $this->redirectToRoute('article_index');
         }
         return $this->render('blog/create.html.twig', [
             'form' => $form->createView()

@@ -3,6 +3,7 @@
 {% block title %}All articles{% endblock %}
 
 {% block body %}
+    {{ app.session.get('total') }}
     <button class="btn btn-secondary mt-2 mb-2"><a href="{{ path('add_category') }}">Create a category</a></button>
     <h1>All articles from article table : </h1>
     {% for article in articles %}

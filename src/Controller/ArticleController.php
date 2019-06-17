@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Slugify;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @Route("/article")
@@ -61,7 +62,7 @@ class ArticleController extends AbstractController
                'text/html'
         );
             $mailer->send($message);
-
+            $this->addFlash('success', 'The new article has been created');
             return $this->redirectToRoute('article_index');
         }
 
@@ -93,6 +94,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'The article has been edited');
 
             return $this->redirectToRoute('article_index', [
                 'id' => $article->getId(),
@@ -114,6 +116,7 @@ class ArticleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
+            $this->addFlash('danger', 'The article has been deleted');
         }
 
         return $this->redirectToRoute('article_index');
